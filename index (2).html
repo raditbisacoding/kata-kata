@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kata Penyemangat</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #fdfbfb, #ebedee);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .smile-box {
+            background-color: #ffffffcc;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .emoji {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .message {
+            font-size: 24px;
+            color: #333;
+            opacity: 0;
+            animation: fadeMessage 1s forwards;
+        }
+
+        @keyframes fadeMessage {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="smile-box">
+        <div class="emoji">😊</div>
+        <div class="message" id="message">Kamu luar biasa hari ini!</div>
+    </div>
+
+    <script>
+        const messages = [
+            "Kamu luar biasa hari ini! ✨",
+            "Senyumanmu bisa mencerahkan dunia 😊",
+            "Jangan lupa bahagia, ya! 🌼",
+            "Setiap hari adalah kesempatan baru 🌈",
+            "Teruslah bersinar, walau kecil 🌟",
+            "Kamu lebih kuat dari yang kamu kira 💪",
+            "Langit cerah setelah hujan, begitu juga kamu 🌤️"
+        ];
+
+        let index = 0;
+        const messageDiv = document.getElementById("message");
+
+        function updateMessage() {
+            messageDiv.style.opacity = 0;
+            setTimeout(() => {
+                messageDiv.textContent = messages[index];
+                messageDiv.style.animation = "none";
+                messageDiv.offsetHeight; // reset animation
+                messageDiv.style.animation = null;
+                messageDiv.style.opacity = 1;
+                index = (index + 1) % messages.length;
+            }, 500);
+        }
+
+        setInterval(updateMessage, 4000); // Ganti setiap 4 detik
+    </script>
+</body>
+</html>
